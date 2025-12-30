@@ -35,6 +35,10 @@ Set the following environment variables in your local environment (`.env.local`)
 - GIT_POSTS_DIR: Folder in the target repository where the MD files are located
 - GIT_IMAGES_DIR: Image folder in the target repository
 - GIT_TOKEN: GitHub API (PAT) token
+- AUTH_GITHUB_ID: GitHub OAuth app client ID
+- AUTH_GITHUB_SECRET: GitHub OAuth app client secret
+- AUTH_GITHUB_ALLOWED_USERS: Comma-separated GitHub usernames allowed to access the site (falls back to `GIT_USERNAME`)
+- AUTH_SECRET: Secret for NextAuth
 - NEXT_PUBLIC_RECAPTCHA_SITE_KEY: reCAPTCHA site key
 - RECAPTCHA_SECRET_KEY: reCAPTCHA secret key
 - GTM_ID: Google Tag Manager

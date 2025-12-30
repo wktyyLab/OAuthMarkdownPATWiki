@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getHeaders, getNext } from '@/lib/fetchingFunc';
 import { siteName } from '@/static/constant';
+import SessionButton from '../SessionButton';
 
 export default async function Footer() {
   const ownerRepoUser = process.env.VERCEL_GIT_REPO_OWNER;
@@ -23,12 +24,10 @@ export default async function Footer() {
   return (
     <footer>
       <div className='mx-auto flex w-full flex-col items-center justify-center p-5'>
-        <p className='mb-4'>
-          <small className='mr-2'>(管理者用)</small>
-          <Link href='/dashboard' className='underline'>
-            ダッシュボード
-          </Link>
-        </p>
+        <Link href='/dashboard' className='underline'>
+          ダッシュボード
+        </Link>
+        <SessionButton />
         <small>&copy; {siteName}</small>
         <small>
           Build with&nbsp;

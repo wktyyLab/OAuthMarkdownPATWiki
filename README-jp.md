@@ -33,6 +33,10 @@ pnpm dev
 - GIT_POSTS_DIR: 対象リポジトリのMDファイルがあるフォルダ
 - GIT_IMAGES_DIR: 対象リポジトリの画像フォルダ
 - GIT_TOKEN: GitHub API (PAT) トークン
+- AUTH_GITHUB_ID: GitHub OAuthアプリのクライアントID
+- AUTH_GITHUB_SECRET: GitHub OAuthアプリのクライアントシークレット
+- AUTH_GITHUB_ALLOWED_USERS: サイトにアクセスできるGitHubユーザー名のカンマ区切りホワイトリスト（未設定時は`GIT_USERNAME`を利用）
+- AUTH_SECRET: NextAuth用のシークレット
 - NEXT_PUBLIC_RECAPTCHA_SITE_KEY: reCAPTCHAのサイトキー
 - RECAPTCHA_SECRET_KEY: reCAPTCHAのシークレットキー
 - GTM_ID: Google Tag Manager
