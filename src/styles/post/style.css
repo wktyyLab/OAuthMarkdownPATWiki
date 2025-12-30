@@ -1,0 +1,100 @@
+.markdown * {
+  @apply scroll-mt-16;
+}
+
+.markdown h1 {
+  @apply my-4 text-3xl;
+}
+
+.markdown h2 {
+  @apply relative mt-4 w-full text-2xl font-bold;
+}
+
+.markdown h3 {
+  @apply my-2 font-bold;
+}
+
+.markdown iframe {
+  @apply mx-auto my-4 max-w-full;
+}
+
+.markdown img {
+  @apply mx-auto my-4 max-w-full;
+}
+
+.markdown p {
+  @apply my-2;
+}
+
+.markdown code {
+  @apply mx-1 rounded-sm bg-gray-100 px-1 py-0.5 transition-colors dark:bg-slate-700;
+}
+
+.markdown a.post_hyper_url {
+  @apply break-all text-blue-700 underline transition-colors hover:no-underline dark:text-blue-600;
+}
+
+.markdown sup > a.post_hyper_url {
+  @apply mr-0.5 rounded bg-blue-100 px-1 py-0.5 text-blue-800 underline hover:bg-blue-200 hover:underline dark:bg-slate-800 dark:text-blue-600 dark:hover:bg-slate-700;
+}
+
+.markdown section.footnotes {
+  @apply rounded bg-gray-100 py-1 dark:bg-slate-700;
+}
+
+.markdown section.footnotes .data-footnote-backref {
+  @apply rounded bg-blue-100 px-1 py-0.5 text-blue-800 transition-colors hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-600 dark:hover:bg-slate-800;
+}
+
+.markdown ul:not(.contains-task-list),
+.markdown ol {
+  @apply my-2 ml-8;
+}
+
+.markdown ul:not(.contains-task-list) li {
+  @apply list-disc;
+}
+
+.markdown ol li {
+  @apply list-decimal;
+}
+
+.markdown table {
+  @apply my-3 w-full border-collapse border-spacing-0 text-center;
+}
+
+.markdown table th {
+  @apply rounded-t-sm border-2 border-solid border-white bg-sky-100 p-2 dark:border-slate-800 dark:bg-sky-950;
+}
+
+.markdown table td {
+  @apply border-2 border-white p-2 dark:border-slate-800;
+}
+
+.markdown table tr:nth-child(2n) {
+  @apply bg-gray-100 dark:bg-slate-700;
+}
+
+.markdown .post_codeblock {
+  @apply my-4;
+}
+
+.markdown .post_fname {
+  @apply inline-block rounded-t-lg bg-slate-800 px-2 py-0.5 text-white transition-colors dark:bg-slate-700 dark:text-slate-400;
+}
+
+.markdown pre {
+  @apply rounded-lg !p-4;
+}
+
+.post_fname + pre {
+  @apply rounded-lg rounded-tl-none;
+}
+
+.markdown pre > code {
+  @apply rounded-none bg-transparent p-0 dark:bg-transparent;
+}
+
+.markdown blockquote {
+  @apply my-4 border-l-4 border-[#555] bg-[#f5f5f5] py-0.5 pl-4 text-[#555] transition-colors dark:border-slate-400 dark:bg-slate-700 dark:text-slate-400;
+}
