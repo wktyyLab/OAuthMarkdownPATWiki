@@ -25,6 +25,22 @@ async function ExImg({ path, alt }: { path: string; alt?: string }) {
 }
 
 async function ExA({ path, isInner }: { path: string; isInner: boolean }) {
+  const failFallback = () =>
+    isInner ? (
+      <a className='post_hyper_url' href={path}>
+        {path}
+      </a>
+    ) : (
+      <a className='post_hyper_url' href={path} target='_blank' rel='noopener noreferrer'>
+        {path}
+      </a>
+    );
+
+  if (!process.env.NEXT_PUBLIC_URL) {
+    console.error('NEXT_PUBLIC_URL is not set; skipping link preview');
+    return failFallback();
+  }
+
   const CardComponent = ({ meta }: { meta: HeadMeta }) => {
     const titleBase = meta['og:title'] ? meta['og:title'] : meta.title ? meta.title : meta.url;
     const title = makeExcerpt(titleBase, 20);
@@ -60,10 +76,26 @@ async function ExA({ path, isInner }: { path: string; isInner: boolean }) {
     );
   };
 
-  const metaResponse = await fetch(`${process.env.NEXT_PUBLIC_URL!}/api/get-head?url=${encodeURIComponent(path)}`, {
-    next: { revalidate: 3600 * 24 },
-  });
-  const meta = (await metaResponse.json()).meta;
+  let meta: HeadMeta | null = null;
+  try {
+    const metaResponse = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-head?url=${encodeURIComponent(path)}`, {
+      next: { revalidate: 3600 * 24 },
+    });
+    const bodyText = await metaResponse.text();
+    if (!metaResponse.ok) {
+      console.error(
+        `get-head failed: ${metaResponse.status} ${metaResponse.statusText} - ${bodyText.slice(0, 200)} for ${path}`,
+      );
+    } else {
+      const parsed = JSON.parse(bodyText);
+      meta = parsed.meta as HeadMeta;
+    }
+  } catch (err) {
+    console.error('Error fetching link preview for', path, err);
+  }
+
+  if (!meta) return failFallback();
+
   return isInner ? (
     <a href={path}>
       <CardComponent meta={meta} />
@@ -177,6 +209,7 @@ export const components: Partial<Components> = {
 };
 
 export function PostMarkdown({ content }: { content: string }) {
+  console.log(content);
   return (
     <div className='markdown'>
       <ReactMarkdown
