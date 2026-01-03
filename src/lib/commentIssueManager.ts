@@ -64,12 +64,30 @@ export const getCommentList = cache(async (slug: string): Promise<Issue> => {
   const targetIssue = await getIssue(slug);
 
   if (targetIssue) {
-    const data = await fetch(targetIssue.commentsURL, {
+    const dataText = await fetch(targetIssue.commentsURL, {
       ...getHeaders(),
       ...getNext(20),
     })
-      .then((res) => res.json())
-      .catch((e) => console.error(e));
+      .then(async (res) => {
+        const text = await res.text();
+        if (!res.ok) {
+          console.error(`Error fetching comments: ${res.status} ${res.statusText} - ${text.slice(0, 200)}`);
+          return '[]';
+        }
+        return text;
+      })
+      .catch((e) => {
+        console.error(e);
+        return '[]';
+      });
+
+    let data: any[] = [];
+    try {
+      data = JSON.parse(dataText);
+    } catch (e) {
+      console.error('Error parsing comments JSON', e);
+      data = [];
+    }
 
     const comments: Comment[] = [];
     for (const item of data) {
