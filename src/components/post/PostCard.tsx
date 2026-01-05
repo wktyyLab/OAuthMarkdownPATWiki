@@ -105,7 +105,7 @@ export function PostLargeCard({ post }: { post: Post }) {
           href={`/post/${post.slug}`}
         >
           <div className='overflow-hidden rounded-md bg-slate-100 dark:bg-slate-700'>
-            <Image loading='lazy' alt={post.data.title} width={1200} height={630} src={`/api/ogp-posts/${post.slug}`} />
+            <img loading='lazy' alt={post.data.title} width={1200} height={630} src={`/api/ogp-posts/${post.slug}`} />
           </div>
           <PostDescription post={post} isPending={isPending} />
         </Link>
