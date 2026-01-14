@@ -23,7 +23,11 @@
 }
 
 .markdown p {
-  @apply my-2;
+  @apply my-2 leading-8;
+}
+
+.markdown hr {
+  @apply my-10;
 }
 
 .markdown code {
